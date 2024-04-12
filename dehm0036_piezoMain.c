@@ -7,7 +7,7 @@
 
 #include "xc.h"
 #include "stdint.h"
-#include "dehm0036_piezo.h"
+#include "dehm0036_piezo_v2.h"
 
 // CW1: FLASH CONFIGURATION WORD 1 (see PIC24 Family Reference Manual 24.1)
 #pragma config ICS = PGx1          // Comm Channel Select (Emulator EMUC1/EMUD1 pins are shared with PGC1/PGD1)
@@ -41,16 +41,36 @@ void delay_ms(unsigned int ms) {
 
 int main() {
     pic24_init();
-    initPiezo();
     initTimer2();
-    setTone(20);
+    setTone(5999);
     
+    // for testing the Piezo Buzzer
     while(1) {
+        
+       setTone(5999);
        piezoOn();
-       delay_ms(200);
-       
+       delay_ms(250);
        piezoOff();
-       delay_ms(200);
+       delay_ms(50);
+       
+       setTone(2999);
+       
+       piezoOn();
+       delay_ms(250);
+       piezoOff();
+       delay_ms(1000);
+       
+       // down in tone
+       for (int i = 0; i < 20; i++) {
+           setTone(3500 + (i * 200));
+           
+           piezoOn();
+           delay_ms(100);
+           
+           piezoOff();
+           delay_ms(100);
+       }
+       delay_ms(1000);
     }
     return 0;
 }
