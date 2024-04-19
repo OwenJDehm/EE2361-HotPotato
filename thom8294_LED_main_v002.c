@@ -41,6 +41,8 @@ void initTimer3(void) {// Configure Timer3
     T3CONbits.TON = 1;      // Timer 3 on
     IEC0bits.T3IE = 1;      // Timer 3 interrupt enabled
 }
+//maxValue determines the length of the LED cycle. it should be set to a random value
+//within a certain range, to sync with the random length of the game.
 volatile unsigned int counter = 0;
 volatile unsigned int maxValue = 100; // # random value to determine time of the flashing. 
 volatile unsigned int idx = 0;
