@@ -46,7 +46,7 @@ void stepperMotor_init() {
     T1CONbits.TCKPS = 0b01; // 1 pre-scalar
 
     // Default values
-    stepsRemaining = 13000;
+    stepsRemaining = 0;
     stepSequence = 1;
 }
 
