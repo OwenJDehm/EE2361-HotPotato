@@ -16,6 +16,7 @@ extern "C" {
     void stepSpeed(int speed);
     void init_timer1();
     void stepMotor(int step);
+    void stopMotor();
 
 
 
