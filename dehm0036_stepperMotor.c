@@ -74,23 +74,6 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
             stepsRemaining++;
         }
     }
-    /*
-    if (stepsRemaining > 0) { // steps still remaining so we need to step
-        LATB &= ~(0xF << 2); // clear last state
-        LATB |= (stepSequenceForward[currentStep] << 2);    // shift to new state of coils moving forward
-        
-        currentStep = (currentStep + 1) % 4;
-        // go to next step, the % 4 accounts for overflow
-        stepsRemaining--;
-    }*/
-    /*else if (stepsRemaining < 0) { // steps still reaming so we need to step (reverse)
-        LATB &= ~(0xF << 2); // clear last state
-        LATB |= (stepSequenceBackward[currentStep] << 2);   // shift to new state of coils moving backward
-        
-        currentStep = (currentStep + 3) % 4; // making sure always positive by adding 3 instead of -1
-        // go to next step, the % 4 accounts for overflow
-        stepsRemaining++;
-    }*/
 }
 
 // setting up the Timer 1
@@ -106,4 +89,8 @@ void init_timer1() {
 
 void stepMotor(int step) {
     stepsRemaining = step;     // set the step count
+}
+
+void stopMotor(){
+    T1CONbits.TON = 0;
 }
