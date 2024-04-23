@@ -1,6 +1,5 @@
 /* Date: April 26th, 2024
  * Name: Robert Chandler, Owen Dehm, Joe Thomas, Maverick Plsek
- * Student ID number: 5791316
  * Course number: EE 2361
  * Term: Spring 2024
  * Lab/assignment number: Final Project - Hot Potato Game
