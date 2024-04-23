@@ -14,9 +14,9 @@ extern "C" {
 
     void stepperMotor_init();
     void stepSpeed(int speed);
-    void init_timer1();
-    void stepMotor(int step);
+    void setMovement(int step);
     void stopMotor();
+    void startMotor();
 
 
 
