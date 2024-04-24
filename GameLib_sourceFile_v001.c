@@ -1,8 +1,13 @@
-/*
- * File:   GameLib_sourceFile_v001.c
- * Author: maverickplsek
- *
- * Created on March 24, 2024, 12:16 PM
+/* Date: April 26th, 2024
+ * Name: Robert Chandler, Owen Dehm, Joe Thomas, Maverick Plsek
+ * Course number: EE 2361
+ * Term: Spring 2024
+ * Lab/assignment number: Final Project - Hot Potato Game
+ * Created on March 24, 2024, 3:14 PM
+ * 
+ * File Purpose: This is the source file,the source file contains all 
+ * of the function definitions that are used in the main file. This source
+ * file uses the buzzer, step motor, and led librarys to create our "Hot Potato" game.
  */
 
 
@@ -11,6 +16,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+/*
+ * This function initializes timer 4 by setting the pre-scalar to 1:1 and the max PR 
+ * of 65535. The purpose of utilizing this timer is for the sole purpose of our random number generator. 
+ */
 void initTimer4(void){
     T4CONbits.TON = 0;      // Timer 3 off
     T4CONbits.TCS = 0;      // internal clock
@@ -22,7 +31,12 @@ void initTimer4(void){
     T4CONbits.TON = 1;
 }
 
-//This function initializes the pic24
+/*
+ * This function initializes the PIC24FJ64GA002.
+ * It sets the clock frequency to 16 MHz and all of the pins to digital
+ * It also designates RB8 as an output and initializes it to 1. This specific pin is for the button and will ground when button is pressed.
+ * Finally it sets RA0 to output and sets to low for the Led
+ */
 void pic24_init(void){
     _RCDIV = 0; //set frequency to 16 Mhz
     AD1PCFG = 0xffff; //set all pins digital
@@ -32,7 +46,10 @@ void pic24_init(void){
     LATAbits.LATA0 = 0; // set RA0 to Low (FOR the LED lights)
 }
 
-//This function initializes all init functions from group.
+/*
+ * This function initializes the hot potato game by calling all initialization functions from the
+ * other component libraries.
+ */
 void initGame(void){
     pic24_init();
     stepperMotor_init();
@@ -41,9 +58,15 @@ void initGame(void){
     initTimer4();
 }
 
-//This function is the game, will be called once button is pressed
+/*
+ * Function: startGame
+ * Starts the game once the button is pressed.
+ * Plays a start chime, sets game duration, and handles game actions.
+ * Vibrates the step motor, flashes LEDs, and plays alternating tones when the potato is "hot".
+ * durationOfGame: Integer representing the length of the game in seconds.
+ */
 void startGame(int durationOfGame){
-    //set tone 2000-5000, maybe add a 0 if it doesn't work
+    //set tone 2000-5000
     piezoOn();      //
     delay_ms(250);   //
     setTone(2000);      //
@@ -86,7 +109,9 @@ void startGame(int durationOfGame){
     }
 }
 
-//This function will reset all components of the game to prepare for another start
+/*
+ * This function ends the game by resetting all the componenets of the game. Intended to be called after start game finishes.
+ */
 void endGame(void){
     piezoOff();
     setTone(0);
@@ -94,18 +119,10 @@ void endGame(void){
     stopMotor();
 }
 
-//This function causes a delay, will be used at end of game.
-void delay_In_Seconds(int seconds){
-    while (seconds-- > 0) {
-        for (int i=0; i < 1000;i++){
-            asm("repeat #15998"); //1 msec delay
-            asm("nop");
-        }
-    }
-}
-
-//This function will randomly generated a number between 15-60 and return it as an int
-//The number returned will represent the length of the game, in seconds, before the potato becomes "hot"
+/*
+ * This function randomly generates and int between the range of 15-60. This random number is intended to be used as 
+ * the length of a single game in seconds. !!Timer 4 must be initialized in order for the numbers to be random!!
+ */
 int time_of_Game_Generator(void){
     srand(TMR4);
     return (rand() % (60 - 15 + 1)) + 15; //Generates a random number between 15-60;
