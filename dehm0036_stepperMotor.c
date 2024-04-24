@@ -128,3 +128,14 @@ void stopMotor(){
 void startMotor(){
     T1CONbits.TON = 1;
 }
+
+/* This function uses inline assembly code to get a precise delay of
+ * 1ms. That delay is then repeated the specified number of times to 
+ * achieve an user specified delay
+ */
+void delay_ms(unsigned int ms){
+    while (ms-- > 0) {
+        asm("repeat #15998");
+        asm("nop");
+    }
+}
