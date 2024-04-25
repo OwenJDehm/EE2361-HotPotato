@@ -31,6 +31,8 @@ int main(void) {
     writeColor(0,0,0);
     while(1){
         while(PORTBbits.RB8); //waiting for button to be pressed (button press signifies start of game)
+        writeColor(0,255,0);
+        delay_ms(500);
         DurationOfGame = time_of_Game_Generator();
         startGame(DurationOfGame);
         endGame();
