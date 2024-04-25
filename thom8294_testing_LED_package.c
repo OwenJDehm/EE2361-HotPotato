@@ -41,9 +41,40 @@ void endGameTimer3(void){
 void __attribute__((__interrupt__,__auto_psv__)) _T3Interrupt(void)
 {
     IFS0bits.T3IF = 0;
-    writeColor(0 + counter, 255 - counter, 0);
+    if (counter >= 0 && counter < 64) {
+        if ((counter % 16 == 0) || (counter % 16 == 1)) {
+            writeColor(0 + counter, 255 - counter, 0);
+        }
+        else {
+            writeColor(0,0,0);
+        }
+    }
+    else if (counter >= 64 && counter < 128) {
+        if ((counter % 8 == 0) || (counter % 8 == 1)) {
+            writeColor(0 + counter, 255 - counter, 0);
+        }
+        else {
+            writeColor(0,0,0);
+        }
+    }
+    else if (counter >= 128 && counter < 192) {
+        if ((counter % 4 == 0) || (counter % 4 == 1)) {
+            writeColor(0 + counter, 255 - counter, 0);
+        }
+        else {
+            writeColor(0,0,0);
+        } 
+    }
+    else if (counter >= 192 && counter < 256) {
+        if (counter % 2 == 0) {
+            writeColor(0 + counter, 255 - counter, 0);
+        }
+        else {
+            writeColor(0,0,0);
+        }
+    }
     counter++;
-}  
+} 
         
 void writeColor(int r, int g, int b)
     {
