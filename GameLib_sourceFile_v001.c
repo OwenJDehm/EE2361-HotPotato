@@ -99,11 +99,22 @@ void startGame(int durationOfGame){
     setMovement(10000);
     startMotor();
     piezoOn();
-    for (int i = 0; i < 25; i++){
-        writeColor(0,0,0);
+    int colVal = 0; // create a toggle for LED flashing
+    for (int i = 2; i < 27; i++) {
         setTone(3000);
+        // LED will toggle every other i increase so there is a difference in flashing
+        // comapred to when the game is getting close to the end and is flashing rapidly
+        if (i % 2 == 0) {
+            if (colVal == 1) {
+                writeColor(0,0,0);
+                colVal = 0;
+            }
+            else if (colVal == 0) {
+                writeColor(255,0,0);
+                colVal = 1;
+            }
+        }
         delay_ms(100);
-        writeColor(255,0,0);
         setTone(5000);
         delay_ms(100);
     }
