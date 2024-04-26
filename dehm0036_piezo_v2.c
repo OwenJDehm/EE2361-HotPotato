@@ -3,6 +3,8 @@
 
 volatile uint8_t state = 0;
 
+/* Initialize the timer 2 to utilize the PWM and use output compare 1, the timer uses a 1 to 1 prescalar
+   The PWM is also being set to use pin RP11 as that is the pin connected to the Piezo Buzzer.*/
 void initTimer2(void) {
     T2CON = 0;              // stop timer 2
     T2CONbits.TCS = 0;      // using external clock
