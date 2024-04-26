@@ -1,6 +1,6 @@
 /*
-    Code by Owen Dehm
-    Doc Strings by Robert Chandler
+ * Code by Owen Dehm
+ * Doc Strings by Robert Chandler
  * File Purpose: This is the source file, the source file contains all 
  * of the function definitions that are used in the main file. This source
  * file is only for the step motor and nothing else relating to the 
