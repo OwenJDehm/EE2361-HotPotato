@@ -1,5 +1,5 @@
-/* 
- * Code by Owen Dehm
+/*  
+ * Code by Owen Dehm and Robert Chandler
  * Doc Strings by Robert Chandler
  * Course number: EE 2361
  * Term: Spring 2024
