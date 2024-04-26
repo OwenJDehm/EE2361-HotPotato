@@ -1,5 +1,5 @@
 /*
- * Code by Owen Dehm
+ * Code by Owen Dehm and Robert Chandler
  * File Purpose: This is the header file, the header file contains all the 
  * the function declarations needed to be used in the main file. This file 
  * solely contains the functions that are used to control the step motor.
