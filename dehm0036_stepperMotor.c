@@ -1,10 +1,6 @@
-/* Date: April 26th, 2024
- * Name: Robert Chandler, Owen Dehm, Joe Thomas, Maverick Plsek
- * Course number: EE 2361
- * Term: Spring 2024
- * Lab/assignment number: Final Project - Hot Potato Game
- * Created on March 24, 2024, 12:22 PM
- * 
+/*
+    Code by Owen Dehm
+    Doc Strings by Robert Chandler
  * File Purpose: This is the source file, the source file contains all 
  * of the function definitions that are used in the main file. This source
  * file is only for the step motor and nothing else relating to the 
